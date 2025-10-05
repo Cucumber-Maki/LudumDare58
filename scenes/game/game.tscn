@@ -1,12 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://cea0kc0y5xkmo"]
+[gd_scene load_steps=6 format=3 uid="uid://cea0kc0y5xkmo"]
 
 [ext_resource type="PackedScene" uid="uid://gqj1i4gumrvl" path="res://assets/menus/gameMenu/gameMenu.tscn" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://bi8nlpd0um1b8" path="res://assets/_org/jam/autoRestart/autoRestart.tscn" id="2_7h61r"]
+[ext_resource type="PackedScene" uid="uid://bkito7lxb1op4" path="res://prefabs/player/player.tscn" id="3_kelw5"]
+[ext_resource type="PackedScene" uid="uid://c8ct64hp0d33r" path="res://prefabs/parts/example_part.tscn" id="4_kelw5"]
 
-[node name="Game" type="Node3D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfrn8"]
+size = Vector2(127, 20)
+
+[node name="Game" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameMenu" parent="CanvasLayer" instance=ExtResource("1_sul5r")]
 
 [node name="AutoRestart" parent="CanvasLayer" instance=ExtResource("2_7h61r")]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("3_kelw5")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
+
+[node name="Environment" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment"]
+position = Vector2(0, -60)
+shape = SubResource("RectangleShape2D_lfrn8")
+debug_color = Color(0.9829717, 0, 0.36160442, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment"]
+position = Vector2(0, 60)
+shape = SubResource("RectangleShape2D_lfrn8")
+debug_color = Color(0.9829717, 0, 0.36160442, 0.41960785)
+
+[node name="ExamplePart" parent="." instance=ExtResource("4_kelw5")]
+position = Vector2(-51, -12)
+
+[node name="ExamplePart2" parent="." instance=ExtResource("4_kelw5")]
+position = Vector2(55, -12)
+
+[node name="ExamplePart3" parent="." instance=ExtResource("4_kelw5")]
+position = Vector2(87, 18)

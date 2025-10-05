@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://hg3ly5ws3j8i"]
+
+[ext_resource type="Script" uid="uid://dihefg6ccd6de" path="res://assets/entities/player/claw/claw.gd" id="1_p61e0"]
+[ext_resource type="Texture2D" uid="uid://barty0t7yeffo" path="res://assets/entities/player/claw/claw_arm.png" id="2_m4vt4"]
+[ext_resource type="Texture2D" uid="uid://bih02jlenrw3v" path="res://assets/entities/player/claw/claw_idle.png" id="2_t8wvt"]
+[ext_resource type="Texture2D" uid="uid://vnke3g7hu3mi" path="res://assets/entities/player/claw/claw_open.png" id="3_t8wvt"]
+[ext_resource type="Texture2D" uid="uid://dr7iyv2lb47qd" path="res://assets/entities/player/claw/claw_closed.png" id="4_7pao5"]
+[ext_resource type="Texture2D" uid="uid://dra0osagvpj5c" path="res://assets/entities/player/claw/claw_base.png" id="6_qqsqx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7pao5"]
+radius = 2.0
+
+[node name="Claw" type="Node2D"]
+script = ExtResource("1_p61e0")
+image_idle = ExtResource("2_t8wvt")
+image_open = ExtResource("3_t8wvt")
+image_closed = ExtResource("4_7pao5")
+
+[node name="GripArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GripArea"]
+shape = SubResource("CircleShape2D_7pao5")
+debug_color = Color(0.7014107, 0.59695137, 0, 0.42000002)
+
+[node name="ClawArm" type="Sprite2D" parent="."]
+rotation = 1.5707964
+texture = ExtResource("2_m4vt4")
+offset = Vector2(0, -8)
+
+[node name="ClawBase" type="Sprite2D" parent="."]
+texture = ExtResource("6_qqsqx")
+
+[node name="ClawHead" type="Sprite2D" parent="."]
+position = Vector2(16, 0)
+rotation = 1.5707964
+texture = ExtResource("3_t8wvt")
+offset = Vector2(0, -8)
+
+[connection signal="area_entered" from="GripArea" to="." method="_on_grip_area_entered"]
+[connection signal="area_exited" from="GripArea" to="." method="_on_grip_area_exited"]

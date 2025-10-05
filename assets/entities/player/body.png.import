@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i2ly038e1ic3"
-path="res://.godot/imported/maki.png-3925ebe12547883b3bf2fd6ee432eacb.ctex"
+uid="uid://yig0n38jgdme"
+path="res://.godot/imported/body.png-3ad46d05c744b28a540ecd9ef32c5a23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/_org/maki.png"
-dest_files=["res://.godot/imported/maki.png-3925ebe12547883b3bf2fd6ee432eacb.ctex"]
+source_file="res://assets/entities/player/body.png"
+dest_files=["res://.godot/imported/body.png-3ad46d05c744b28a540ecd9ef32c5a23.ctex"]
 
 [params]
 

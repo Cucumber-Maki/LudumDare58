@@ -9,11 +9,9 @@ func _ready() -> void:
 	addCategory("Settings");
 
 	addTab("Game");
-	addCategory("Camera");
-	addOption(OptionType.Slider, "Mouse Sensitivity", "camera_mouseLookSensitivity", { "min_value": 0.0, "max_value": 10.0, "step": 0.25 });
-	addOption(OptionType.Slider, "Analog Sensitivity", "camera_analogLookSensitivity", { "min_value": 0.0, "max_value": 10.0, "step": 0.25 });
-	addOption(OptionType.CheckBox, "Invert Y", "camera_invertCameraY");
-	addOption(OptionType.CheckBox, "Invert X", "camera_invertCameraX");
+	addCategory("Claw");
+	addOption(OptionType.CheckBox, "Keep Claw Foward", "game_keepClawForward");
+	addOption(OptionType.CheckBox, "Hold Claw (Instead of Toggle)", "game_toggleHoldClaw");
 
 	addTab("Audio");
 	addCategory("Volume");

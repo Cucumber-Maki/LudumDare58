@@ -91,9 +91,7 @@ func _process(_delta: float) -> void:
 	
 func _updateMouseVisibility() -> void:
 	var targetState : Input.MouseMode = Input.MOUSE_MODE_VISIBLE;
-	if (inputActive): 
-		targetState = Input.MOUSE_MODE_CAPTURED;
-	elif (isUsingController):
+	if (isUsingController):
 		targetState = Input.MOUSE_MODE_HIDDEN;
 	
 	# Skip if already equal to lock status.

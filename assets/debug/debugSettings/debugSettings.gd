@@ -16,8 +16,13 @@ func getFileLocation() -> String:
 	
 func _ready():
 	loadSaveable();
+	
 	updateDebugCollisionHint();
 	bindValueChanged("colliders_visible", updateDebugCollisionHint);
+	
+	RenderingServer.set_debug_generate_wireframes(true)
+	updateWireframeView()
+	bindValueChanged("render_wireframe", updateWireframeView);
 
 func updateDebugCollisionHint():
 	# Update visibility hint.
@@ -34,7 +39,7 @@ func updateDebugCollisionHint():
 		if (!is_instance_valid(node)): continue;
 		
 		# Update node.
-		if (node is CollisionShape3D):
+		if (node is CollisionObject2D || node is CollisionShape3D):
 			# Force redraw by re-adding to tree.
 			var parent: Node = node.get_parent()
 			if (parent != null):

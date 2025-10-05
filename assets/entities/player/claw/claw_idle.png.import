@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i2ly038e1ic3"
-path="res://.godot/imported/maki.png-3925ebe12547883b3bf2fd6ee432eacb.ctex"
+uid="uid://bih02jlenrw3v"
+path="res://.godot/imported/claw_idle.png-40da9af9936070446ca6253f1628c385.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/_org/maki.png"
-dest_files=["res://.godot/imported/maki.png-3925ebe12547883b3bf2fd6ee432eacb.ctex"]
+source_file="res://assets/entities/player/claw/claw_idle.png"
+dest_files=["res://.godot/imported/claw_idle.png-40da9af9936070446ca6253f1628c385.ctex"]
 
 [params]
 

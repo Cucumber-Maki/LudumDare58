@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bab6j5n3amm12"]
+
+[node name="PartJoin" type="Area2D"]
+collision_layer = 64
+collision_mask = 32

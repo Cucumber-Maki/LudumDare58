@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8ct64hp0d33r"]
+
+[ext_resource type="PackedScene" uid="uid://d3ig42f0i1rka" path="res://assets/entities/parts/part_base.tscn" id="1_joih8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf1sp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8j7rs"]
+radius = 20.0
+
+[node name="ExamplePart" instance=ExtResource("1_joih8")]
+shape = SubResource("RectangleShape2D_vf1sp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartJoin" index="0"]
+shape = SubResource("CircleShape2D_8j7rs")
+debug_color = Color(0, 0.64685506, 0.20906562, 0.1)

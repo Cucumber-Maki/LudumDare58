@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i2ly038e1ic3"
-path="res://.godot/imported/maki.png-3925ebe12547883b3bf2fd6ee432eacb.ctex"
+uid="uid://cu47odnxftkwe"
+path="res://.godot/imported/part_connection.png-8344f9a806d4a5ed437517b78bfbd82e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/_org/maki.png"
-dest_files=["res://.godot/imported/maki.png-3925ebe12547883b3bf2fd6ee432eacb.ctex"]
+source_file="res://assets/entities/parts/part_connection.png"
+dest_files=["res://.godot/imported/part_connection.png-8344f9a806d4a5ed437517b78bfbd82e.ctex"]
 
 [params]
 

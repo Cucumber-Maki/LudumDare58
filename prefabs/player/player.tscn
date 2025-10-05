@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkito7lxb1op4"]
+
+[ext_resource type="Script" uid="uid://csmjet12ubsgq" path="res://assets/entities/player/player.gd" id="1_j8wwh"]
+[ext_resource type="PackedScene" uid="uid://bab6j5n3amm12" path="res://assets/entities/parts/part_join.tscn" id="2_ecp7k"]
+[ext_resource type="Texture2D" uid="uid://yig0n38jgdme" path="res://assets/entities/player/body.png" id="3_3kclj"]
+[ext_resource type="PackedScene" uid="uid://hg3ly5ws3j8i" path="res://assets/entities/player/claw/claw.tscn" id="4_e3x78"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_87uf6"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7h61r"]
+radius = 8.0
+
+[node name="Player" type="RigidBody2D"]
+center_of_mass_mode = 1
+contact_monitor = true
+max_contacts_reported = 6
+script = ExtResource("1_j8wwh")
+rotation_term_p = 1.1
+
+[node name="PartJoin" parent="." instance=ExtResource("2_ecp7k")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartJoin"]
+shape = SubResource("CircleShape2D_87uf6")
+debug_color = Color(0, 0.64685506, 0.24780053, 0.1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7h61r")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("3_3kclj")
+
+[node name="Claw" parent="." instance=ExtResource("4_e3x78")]
+rotation = -1.5707964

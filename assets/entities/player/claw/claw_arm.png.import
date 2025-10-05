@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i2ly038e1ic3"
-path="res://.godot/imported/maki.png-3925ebe12547883b3bf2fd6ee432eacb.ctex"
+uid="uid://barty0t7yeffo"
+path="res://.godot/imported/claw_arm.png-61518d748d25e0351b8925b3e5de671f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/_org/maki.png"
-dest_files=["res://.godot/imported/maki.png-3925ebe12547883b3bf2fd6ee432eacb.ctex"]
+source_file="res://assets/entities/player/claw/claw_arm.png"
+dest_files=["res://.godot/imported/claw_arm.png-61518d748d25e0351b8925b3e5de671f.ctex"]
 
 [params]
 
