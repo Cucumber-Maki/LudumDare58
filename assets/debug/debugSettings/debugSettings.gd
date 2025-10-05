@@ -39,7 +39,7 @@ func updateDebugCollisionHint():
 		if (!is_instance_valid(node)): continue;
 		
 		# Update node.
-		if (node is CollisionObject2D || node is CollisionShape3D):
+		if (node is TileMapLayer || node is CollisionObject2D || node is CollisionShape3D):
 			# Force redraw by re-adding to tree.
 			var parent: Node = node.get_parent()
 			if (parent != null):

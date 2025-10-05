@@ -12,8 +12,10 @@ radius = 20.0
 radius = 8.0
 
 [node name="Player" type="RigidBody2D"]
+collision_layer = 3
 center_of_mass_mode = 1
-contact_monitor = true
+inertia = 1.0
+continuous_cd = 2
 max_contacts_reported = 6
 script = ExtResource("1_j8wwh")
 rotation_term_p = 1.1

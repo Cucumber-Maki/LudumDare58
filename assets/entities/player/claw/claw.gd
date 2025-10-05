@@ -8,10 +8,12 @@ extends Node2D
 @export_group("Arm", "arm_")
 @export var arm_speed := 150.0;
 @export var arm_connectDistance = 48.0;
+@export var arm_maxGrabVelocity = 64.0;
 
 @onready var m_player : Player = get_parent() as Player;
 var m_grippedPart : Part = null;
-@onready var m_targetPosition := Vector2.ZERO; 
+var m_targetPosition := Vector2.ZERO; 
+var m_targetLocalPosition := Vector2(16, 0);
 
 func _physics_process(delta: float) -> void:
 	handleClaw(delta);
@@ -20,12 +22,13 @@ func handleClaw(delta : float) -> void:
 	if (m_player != null && !m_player.claw_enabled):
 		$ClawHead.texture = image_idle;
 		m_grippedPart = null;
-		m_targetPosition = get_global_mouse_position() - global_position;
+		m_targetPosition = to_global(m_targetLocalPosition) - global_position;
 		return;
 		
 	var lastTargetPosition = m_targetPosition;
 	m_targetPosition = m_targetPosition.move_toward((get_global_mouse_position() - global_position), arm_speed * delta);
 	var target := m_targetPosition + global_position;
+	m_targetLocalPosition = to_local(target);
 	
 	var grippableObject := getBestGrippedObject();	
 	var grippablePart := (grippableObject.get_parent() as Part) if (grippableObject != null) else null;
@@ -56,9 +59,11 @@ func handleClaw(delta : float) -> void:
 			if (collision != null): 
 				difference = collision.get_travel();
 				m_targetPosition = lastTargetPosition.lerp(m_targetPosition, 0.25);
+			target = (current + difference).lerp(target, 0.5);
+			# Clamp force.
+			difference = difference.normalized() * min(difference.length(), arm_maxGrabVelocity);
 			m_grippedPart.m_rigidBody.linear_velocity = difference / delta;
 			m_grippedPart.m_rigidBody.apply_torque(1);
-			target = (current + difference).lerp(target, 0.5);
 		pass;
 	
 	look_at(target);
