@@ -94,7 +94,6 @@ func handleRotation(delta : float) -> void:
 	var error_d := rotation_term_d * rotationDelta;
 	#
 	var angularAcceleration := error_p + error_i + error_d;
-	#angular_velocity = angularAcceleration;
 	apply_torque((angularAcceleration - rotationDelta) / delta)
 	
 func handleMovement(_delta : float) -> void:
