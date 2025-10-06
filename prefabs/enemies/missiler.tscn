@@ -4,6 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://6ltf4aj65o7o" path="res://assets/entities/enemies/bomber/bomber.png" id="2_15np7"]
 
 [node name="Missiler" instance=ExtResource("1_gcuim")]
+health_max = 8.0
+ai_approachDistance = 160.0
+ai_retreatDistance = 80.0
+ai_movementMultiplier = 0.5
+ai_approachForce = 0.5
+ai_sideSpeed = 32.0
 projectile_scene = "uid://lvy81sutyx1o"
 projectile_interval = 2.0
 

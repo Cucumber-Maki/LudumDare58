@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://d050tddskg3dx" path="res://assets/entities/enemies/bouncer/bouncer.png" id="2_f8qie"]
 
 [node name="Bouncer" instance=ExtResource("1_fustd")]
+health_max = 15.0
+ai_movementMultiplier = 0.25
 projectile_scene = "uid://drisol85qtds1"
 projectile_interval = 5.0
 

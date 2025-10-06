@@ -7,6 +7,7 @@
 radius = 7.0
 
 [node name="Laserer" instance=ExtResource("1_qry71")]
+health_max = 5.0
 projectile_scene = "uid://by4ax5li8vcj1"
 projectile_interval = 3.0
 
