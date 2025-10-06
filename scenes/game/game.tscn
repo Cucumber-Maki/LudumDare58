@@ -1,28 +1,149 @@
-[gd_scene load_steps=7 format=3 uid="uid://cea0kc0y5xkmo"]
+[gd_scene load_steps=11 format=3 uid="uid://cea0kc0y5xkmo"]
 
+[ext_resource type="Theme" uid="uid://8jm73pmaw63g" path="res://assets/menus/_theme/theme.tres" id="1_bdhmt"]
 [ext_resource type="PackedScene" uid="uid://gqj1i4gumrvl" path="res://assets/menus/gameMenu/gameMenu.tscn" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://cro36puvw55av" path="res://assets/entities/player/safeTeleport.tscn" id="2_4j704"]
 [ext_resource type="PackedScene" uid="uid://bi8nlpd0um1b8" path="res://assets/_org/jam/autoRestart/autoRestart.tscn" id="2_7h61r"]
 [ext_resource type="PackedScene" uid="uid://bkito7lxb1op4" path="res://prefabs/player/player.tscn" id="3_kelw5"]
 [ext_resource type="PackedScene" uid="uid://cdk3xljejrviq" path="res://assets/world/world.tscn" id="4_5i0tg"]
+[ext_resource type="Script" uid="uid://1rawigvn5q4e" path="res://assets/tutorial/tutorial_2.gd" id="6_87uf6"]
+[ext_resource type="Script" uid="uid://bocpqtl72nx28" path="res://assets/tutorial/tutorial_3.gd" id="7_2a8rs"]
+[ext_resource type="Script" uid="uid://m1ajn3okva83" path="res://assets/tutorial/tutorial_4.gd" id="8_4j704"]
 [ext_resource type="PackedScene" uid="uid://c1n6yckg4ol3q" path="res://assets/world/background/background.tscn" id="11_5jirj"]
 
 [node name="Game" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GameMenu" parent="CanvasLayer" instance=ExtResource("1_sul5r")]
-
 [node name="SafeTeleport" parent="CanvasLayer" instance=ExtResource("2_4j704")]
 visible = false
+
+[node name="GameMenu" parent="CanvasLayer" instance=ExtResource("1_sul5r")]
 
 [node name="AutoRestart" parent="CanvasLayer" instance=ExtResource("2_7h61r")]
 visible = false
 
 [node name="World" parent="." instance=ExtResource("4_5i0tg")]
 
+[node name="Thank you" type="Label" parent="World"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 615.0
+offset_top = -3634.0
+offset_right = 938.0
+offset_bottom = -3525.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bdhmt")
+text = "Thank you for playing!
+
+(This isn't necessarily the last 
+room but it is the end room!)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crown" type="Label" parent="World"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 795.0
+offset_top = -3712.0
+offset_right = 1019.0
+offset_bottom = -3659.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bdhmt")
+text = "-- Crown of 
+   Overwhelming Victory"
+vertical_alignment = 1
+
+[node name="Tutorial" type="Label" parent="World"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -52.0
+offset_right = 142.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.62551713, 0.62551713)
+theme = ExtResource("1_bdhmt")
+text = "Right click to use claw"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tutorial2" type="Label" parent="World"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -36.0
+offset_right = 152.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.62551713, 0.62551713)
+theme = ExtResource("1_bdhmt")
+text = "Left click to grab parts"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_87uf6")
+
+[node name="Tutorial3" type="Label" parent="World"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 14.0
+offset_right = 162.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.62551713, 0.62551713)
+theme = ExtResource("1_bdhmt")
+text = "Drag and drop parts nearby 
+yourself to connect them!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_2a8rs")
+
+[node name="Tutorial4" type="Label" parent="World" node_paths=PackedStringArray("deleteList")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.00001
+offset_top = -60.0
+offset_right = 208.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.62551713, 0.62551713)
+theme = ExtResource("1_bdhmt")
+text = "Defeat the enemy 
+to unlock the door!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_4j704")
+deleteList = [NodePath("../Tutorial"), NodePath("../Tutorial2"), NodePath("../Tutorial3")]
+
 [node name="Player" parent="." node_paths=PackedStringArray("camera_cameraNode", "bounds_timeoutLabel") instance=ExtResource("3_kelw5")]
+position = Vector2(-64, 0)
 camera_cameraNode = NodePath("Camera2D")
+camera_defaultZoom = 1.5
 bounds_timeoutLabel = NodePath("../CanvasLayer/SafeTeleport/Margin/Label")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

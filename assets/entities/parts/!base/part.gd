@@ -1,6 +1,15 @@
 extends CollisionShape2D
 class_name Part;
 
+signal onJoin();
+signal onDetach();
+
+@export var health_max := 5.0;
+@onready var health_remaining := 5.0;
+var health_regenTimer := 0.0;
+
+@export var rotation_random := true;
+
 var m_connectedParent : Part = null;
 var m_rigidBody : RigidBody2D = null;
 
@@ -11,9 +20,18 @@ func _ready() -> void:
 	collider.debug_color = Color.ORANGE;
 	collider.debug_color.a = 0.5;
 	
+	if (rotation_random):
+		rotation = randf() * TAU;
+	
 	call_deferred("detach");
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	
+	if (health_regenTimer > 0.0):
+		health_regenTimer -= delta;
+	elif (health_remaining < health_max):
+		health_remaining = move_toward(health_remaining, health_max, delta);
+	
 	var parent := get_parent() as RigidBody2D;
 	if (parent == null):
 		detach();
@@ -31,7 +49,7 @@ func join(parent : RigidBody2D, joinable : bool, connectionOrigin : Vector2 = pa
 		reparent(parent);
 	parent.call_deferred("move_child", self, 0);
 	drawConnection(connectionOrigin);
-	
+		
 	$PartJoin.visible = joinable;
 	
 	if (m_rigidBody != null && m_rigidBody.get_child_count() <= 0):
@@ -40,14 +58,19 @@ func join(parent : RigidBody2D, joinable : bool, connectionOrigin : Vector2 = pa
 	
 	for sibling in siblings:
 		sibling.join(parent, joinable, self.global_position);
-	
+
+	onJoin.emit();
+	var player := parent as Player;
+	$Cover.visible = player == null;
+	if (player != null):
+		player.onPartJoin.emit(self);
 
 func detach() -> void:
 	drawConnectionClear();
 	
 	m_connectedParent = null;
 	$PartJoin.visible = false;
-	m_connectableShapes.clear();
+	#m_connectableShapes.clear();
 	
 	var scene := get_tree().get_current_scene();
 	if (get_parent() == m_rigidBody && get_parent().get_child_count() <= 1):
@@ -72,6 +95,15 @@ func detach() -> void:
 		
 	for sibling in siblings:
 		sibling.join(m_rigidBody, false);
+		
+	onDetach.emit();
+	$Cover.visible = true;
+
+func takeDamage(damage : float) -> void:
+	health_remaining -= damage;
+	health_regenTimer = 1.0;
+	if (health_remaining > 0.0): return;
+	detach();
 
 func drawConnection(target : Vector2, onTop : bool = false) -> void:
 	var difference := target - global_position;

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://nm86tw4vkpik"]
+
+[ext_resource type="SpriteFrames" uid="uid://co2wrymk4kilp" path="res://assets/entities/explosion/explosion.tres" id="1_frh6x"]
+[ext_resource type="Script" uid="uid://dad777jqu4hno" path="res://assets/entities/explosion/explosion.gd" id="1_rdeth"]
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_rdeth")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_frh6x")
+autoplay = "default"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

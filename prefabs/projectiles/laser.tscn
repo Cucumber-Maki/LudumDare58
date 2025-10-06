@@ -22,4 +22,4 @@ shape = SubResource("RectangleShape2D_3ir6q")
 rotation = 1.5707964
 texture = ExtResource("2_3ir6q")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

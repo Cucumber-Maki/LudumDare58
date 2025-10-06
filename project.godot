@@ -152,6 +152,7 @@ game_debugMode={
 2d_physics/layer_6="Part Hitbox"
 2d_physics/layer_7="Part Join"
 2d_physics/layer_8="Room"
+2d_physics/layer_9="Door"
 
 [physics]
 

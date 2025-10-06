@@ -6,6 +6,8 @@ extends Part;
 @onready var projectiler_interval_timer := projectile_interval;
 
 func _physics_process(delta: float) -> void:
+	super(delta);
+	
 	if (m_rigidBody as Player == null): return;
 	
 	projectiler_interval_timer -= delta;

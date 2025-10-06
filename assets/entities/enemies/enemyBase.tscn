@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://br8bgefwontqj"]
+[gd_scene load_steps=3 format=3 uid="uid://br8bgefwontqj"]
 
 [ext_resource type="Script" uid="uid://dcdym2yb0fc7o" path="res://assets/entities/enemies/enemy.gd" id="1_0ksov"]
+[ext_resource type="PackedScene" uid="uid://b813ug2gy408u" path="res://assets/entities/healthBar/healthBar.tscn" id="2_i7cgj"]
 
 [node name="EnemyBase" type="RigidBody2D"]
 collision_layer = 8
@@ -10,3 +11,8 @@ script = ExtResource("1_0ksov")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("listen_node") instance=ExtResource("2_i7cgj")]
+position = Vector2(0, -10)
+listen_node = NodePath("..")
+listen_variable_remaining = &"health_current"

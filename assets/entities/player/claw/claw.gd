@@ -1,4 +1,5 @@
 extends Node2D
+class_name Claw;
 
 @export_group("Images", "image_")
 @export var image_idle : Texture2D;

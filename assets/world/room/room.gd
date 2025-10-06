@@ -1,6 +1,7 @@
 extends Area2D
 class_name Room;
 
+
 var rect : Rect2 = Rect2(0, 0, 0, 0);
 func _ready() -> void:
 	for child in get_children():
@@ -12,12 +13,26 @@ func _ready() -> void:
 		rect.position += shape.global_position;
 		break;
 
-func _physics_process(_delta: float) -> void:
-	if (m_player == null): return;
-	if (containsPoint(m_player.global_position)):
-		if (m_player.room_current == self): return;
-		m_player.room_current = self;
-		m_player.roomChanged.emit(self);
+var hasPlayer := 0.0;
+func _physics_process(delta: float) -> void:
+	var hasEnemies := false;
+	for entity in entities:
+		var contained := containsPoint(entity.global_position);
+		if (contained):
+			if (entity as Enemy != null):
+				hasEnemies = true;
+			elif (entity as Player != null):
+				hasPlayer += delta;
+			
+		if (!contained || entity.room_current == self): 
+			continue;
+		
+		entity.room_current = self;
+		entity.onRoomChanged.emit();
+
+	if (hasPlayer > 0.2 && !hasEnemies):
+		for door in doors:
+			door.queue_free();
 
 func containsPoint(point : Vector2) -> bool:
 	return rect.has_point(point);
@@ -42,12 +57,16 @@ func clampCamera(center : Vector2, camera : Camera2D, defaultZoom : float = 2.0)
 	camera.global_position.y = clamp(center.y, space.position.y, space.position.y + space.size.y);
 
 
-var m_player : Player = null;
+var entities : Array[Entity] = [];
+var doors : Array[Door] = [];
 func _on_body_entered(body: Node2D) -> void:
-	var player := body as Player;
-	if (player == null): return;
-	m_player = player;
+	var entity := body as Entity;
+	if (entity != null): entities.push_back(entity);
+	var door := body as Door;
+	if (door != null && containsPoint(door.global_position)): doors.push_back(door);
+	
 func _on_body_exited(body: Node2D) -> void:
-	var player := body as Player;
-	if (player == null || m_player != player): return;
-	m_player = null;
+	var entity := body as Entity;
+	if (entity != null): entities.erase(entity);
+	var door := body as Door;
+	if (door != null): doors.erase(door);

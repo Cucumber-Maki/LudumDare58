@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://ojp16cjvnueq"]
+
+[ext_resource type="PackedScene" uid="uid://d3ig42f0i1rka" path="res://assets/entities/parts/!base/part_base.tscn" id="1_c5dg6"]
+[ext_resource type="Texture2D" uid="uid://beyrob3vs7sps" path="res://assets/entities/parts/crown/crown.png" id="2_i0006"]
+[ext_resource type="Script" uid="uid://bkotm7n6bldjt" path="res://assets/entities/parts/crown/crown.gd" id="2_rsyrm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rsyrm"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yepn2"]
+radius = 17.0
+
+[node name="Crown" instance=ExtResource("1_c5dg6")]
+shape = SubResource("CircleShape2D_rsyrm")
+script = ExtResource("2_rsyrm")
+rotation_random = false
+
+[node name="Cover" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartJoin" index="0"]
+shape = SubResource("CircleShape2D_yepn2")
+debug_color = Color(0, 0.64705884, 0.20784314, 0.101960786)
+
+[node name="Crown" type="Sprite2D" parent="." index="3"]
+texture = ExtResource("2_i0006")

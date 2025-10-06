@@ -1,4 +1,10 @@
 extends Entity;
+class_name Enemy;
+
+@export_group("Health", "health_")
+@export var health_max := 10.0;
+@onready var health_current = health_max;
+const death_explosion = preload("res://assets/entities/explosion/explosion.tscn");
 
 @export_file("*.tscn") var projectile_scene : String;
 @export var projectile_interval := 1.0;
@@ -6,7 +12,14 @@ extends Entity;
 @onready var projectiler_interval_timer := projectile_interval;
 
 func _ready() -> void:
-	onDeath.connect(func(): queue_free());
+	call_deferred("bindRoomCheck");
+	onHit.connect(takeDamage);
+	onDeath.connect(func(): 
+		var explosion := death_explosion.instantiate() as Node2D;
+		explosion.global_position = global_position;
+		get_tree().current_scene.add_child(explosion);
+		)
+	process_mode = Node.PROCESS_MODE_DISABLED;
 
 func _physics_process(delta: float) -> void:
 	projectiler_interval_timer -= delta;
@@ -14,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		return;
 	projectiler_interval_timer = projectile_interval;
 	
-	if (projectile_scene == null): return;
+	if (projectile_scene == null || projectile_scene == ""): return;
 	var projectile_packed := load(projectile_scene) as PackedScene;
 	var projectile := projectile_packed.instantiate() as Projectile;
 	projectile.side_player = false;
@@ -25,3 +38,22 @@ func _physics_process(delta: float) -> void:
 		projectile.projectile_parentVelocity = partParent.linear_velocity;
 	
 	get_tree().get_current_scene().add_child(projectile);
+
+func takeDamage(damage : float) -> void: 
+	if (health_current <= 0): return;
+	health_current -= damage;
+
+	if (health_current > 0): return;
+	onDeath.emit();
+	queue_free();
+	
+func bindRoomCheck():
+	onRoomChanged.connect(checkRoom);
+	Player.instance.onRoomChanged.connect(checkRoom);
+	checkRoom();
+	
+func checkRoom():
+	if (Player.instance.room_current == room_current):
+		process_mode = Node.PROCESS_MODE_INHERIT;
+	else: 
+		process_mode = Node.PROCESS_MODE_DISABLED;

@@ -1,7 +1,10 @@
 extends Entity
 class_name Player;
 
-signal roomChanged(room : Room);
+signal onWin();
+signal onPartJoin(part : Part);
+
+static var instance : Player = null;
 
 @export_category("Movement Characteristics")
 @export_group("Rotation", "rotation_")
@@ -33,13 +36,18 @@ var rotation_roomOffset := 0.0;
 @onready var bounds_timer = bounds_timeout;
 var bounds_lastSafePosition = Vector2.ZERO;
 
-var room_current : Room = null;
 var claw_enabled := false;
 
 func _ready() -> void:
-	body_shape_entered.connect(_on_body_shape_entered);
-	roomChanged.connect(func(_room): rotation_bump = true);
+	onHitShape.connect(func(damage, shape): Console.printWarning(damage, " ", shape));
+	onHitShape.connect(takeDamage);
+	onRoomChanged.connect(func(): rotation_bump = true);
+	instance = self;
 	
+	onPartJoin.connect(func(part : Part):
+		var crown := part as Crown;
+		if (crown == null): return;
+		onWin.emit());
 
 var mousePosition := Vector2.ZERO;
 func _input(event: InputEvent) -> void:
@@ -125,7 +133,21 @@ func handleMovement(_delta : float) -> void:
 	
 	apply_force(movementInput * movement_thrustPower);
 
-func _on_body_shape_entered(_body_rid: RID, _body: Node, _body_shape_index: int, _local_shape_index: int):
-	#Console.printSuccess(body_rid, " ", body, " ", body_shape_index, " ", local_shape_index);
-	# TODO: ?
-	pass;
+var health_alive := true;
+func takeDamage(damage : float, shape : CollisionShape2D):
+	if (!health_alive): return;
+	
+	var part := shape as Part;
+	if (part == null):
+		# Damage random part.
+		var parts := get_children() \
+			.map(func(child : Node): return child as Part) \
+			.filter(func(child : Node): return child != null);
+		if (parts.size() <= 0):
+			# If that doesn't exist, death is amongus.
+			onDeath.emit();
+			health_alive = false;
+			return;
+		part = parts.pick_random()	
+	
+	part.takeDamage(damage);

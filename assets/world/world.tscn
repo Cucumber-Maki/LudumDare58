@@ -1,12 +1,14 @@
-[gd_scene load_steps=32 format=4 uid="uid://cdk3xljejrviq"]
+[gd_scene load_steps=34 format=4 uid="uid://cdk3xljejrviq"]
 
 [ext_resource type="TileSet" uid="uid://dh4v2p30gsvqv" path="res://assets/world/environmnet/environment_tileset.tres" id="1_hukdr"]
 [ext_resource type="PackedScene" uid="uid://bdb047j6n3bns" path="res://assets/world/room/room.tscn" id="2_sn10k"]
-[ext_resource type="PackedScene" uid="uid://c8ct64hp0d33r" path="res://prefabs/parts/example_part.tscn" id="3_moqa0"]
 [ext_resource type="PackedScene" uid="uid://cnlxuhp2737bm" path="res://prefabs/parts/missile.tscn" id="4_v8xi1"]
 [ext_resource type="PackedScene" uid="uid://bmyrrvuiooexg" path="res://prefabs/parts/laser.tscn" id="5_pk4gp"]
 [ext_resource type="PackedScene" uid="uid://u26qcqun5j7c" path="res://prefabs/parts/bouncer.tscn" id="6_1xmt0"]
+[ext_resource type="PackedScene" uid="uid://be6nto3djtq1t" path="res://assets/world/door/door.tscn" id="6_sn10k"]
+[ext_resource type="PackedScene" uid="uid://fk0xa8e2siv6" path="res://prefabs/enemies/dull.tscn" id="7_hukdr"]
 [ext_resource type="PackedScene" uid="uid://cadvtjicbrawf" path="res://prefabs/enemies/laserer.tscn" id="7_nldp1"]
+[ext_resource type="PackedScene" uid="uid://ojp16cjvnueq" path="res://prefabs/parts/crown.tscn" id="9_moqa0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i0tg"]
 size = Vector2(288, 160)
@@ -269,39 +271,139 @@ position = Vector2(560, -952)
 shape = SubResource("RectangleShape2D_0wy3s")
 debug_color = Color(0.32470304, 0.5534917, 0.76203185, 0.41960785)
 
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(96, 48)
+rotation = 3.1415925
+scale = Vector2(1, 6)
+
+[node name="Door2" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(400, -128)
+rotation = 1.5707964
+scale = Vector2(1, 6)
+
+[node name="Door3" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(384, -480)
+rotation = 1.5707964
+scale = Vector2(1, 4)
+
+[node name="Door4" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(1104, -496.00003)
+rotation = 3.1415927
+scale = Vector2(1, 5)
+
+[node name="Door5" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(208, -576)
+scale = Vector2(1, 4)
+
+[node name="Door6" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(-48, -384)
+scale = Vector2(1, 6)
+
+[node name="Door7" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(-320, -384)
+scale = Vector2(1, 6)
+
+[node name="Door8" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(-528, -864)
+rotation = 1.5707964
+scale = Vector2(1, 7)
+
+[node name="Door9" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(-528, -1200)
+rotation = 1.5707964
+scale = Vector2(1, 7)
+
+[node name="Door10" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(-128, -1776)
+rotation = 1.5707964
+scale = Vector2(1, 9)
+
+[node name="Door11" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(-496, -2192)
+scale = Vector2(1, 7)
+
+[node name="Door12" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(-720, -2272)
+rotation = 1.5707964
+scale = Vector2(1, 8)
+
+[node name="Door13" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(16, -2032)
+rotation = 3.1415927
+scale = Vector2(1, 10)
+
+[node name="Door14" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(544, -2528)
+rotation = 3.1415927
+scale = Vector2(1, 7)
+
+[node name="Door15" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(784.00006, -2768)
+rotation = 1.5707964
+scale = Vector2(1, 6)
+
+[node name="Door16" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(784.00006, -3168)
+rotation = 1.5707964
+scale = Vector2(1, 6)
+
+[node name="Door17" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(880, -2144)
+rotation = 3.1415927
+scale = Vector2(1, 7)
+
+[node name="Door18" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(1328.0001, -2064)
+rotation = 4.712389
+scale = Vector2(1, 11)
+
+[node name="Door19" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(1328, -1824)
+rotation = 4.712389
+scale = Vector2(1, 11)
+
+[node name="Door20" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(1200, -1360)
+rotation = 4.712389
+scale = Vector2(1, 10)
+
+[node name="Door21" parent="Doors" instance=ExtResource("6_sn10k")]
+position = Vector2(960, -1584)
+rotation = 6.2831855
+scale = Vector2(1, 7)
+
 [node name="Parts" type="Node2D" parent="."]
 
-[node name="ExamplePart" parent="Parts" instance=ExtResource("3_moqa0")]
-position = Vector2(288, -16)
+[node name="Laser" parent="Parts" instance=ExtResource("5_pk4gp")]
+rotation_random = false
 
-[node name="ExamplePart2" parent="Parts" instance=ExtResource("3_moqa0")]
-position = Vector2(394, -16)
-
-[node name="ExamplePart3" parent="Parts" instance=ExtResource("3_moqa0")]
-position = Vector2(426, 14)
+[node name="Crown" parent="Parts" instance=ExtResource("9_moqa0")]
+position = Vector2(768, -3696)
 
 [node name="Missile" parent="Parts" instance=ExtResource("4_v8xi1")]
-position = Vector2(72, 17)
+position = Vector2(356, 42)
 
 [node name="Missile2" parent="Parts" instance=ExtResource("4_v8xi1")]
-position = Vector2(45, 38)
-
-[node name="Laser" parent="Parts" instance=ExtResource("5_pk4gp")]
-position = Vector2(81, -6)
+position = Vector2(329, 63)
 
 [node name="Laser2" parent="Parts" instance=ExtResource("5_pk4gp")]
-position = Vector2(15, 34)
+position = Vector2(299, 59)
 
 [node name="Laser3" parent="Parts" instance=ExtResource("5_pk4gp")]
-position = Vector2(70, -28)
+position = Vector2(354, -3)
 
 [node name="Bouncer" parent="Parts" instance=ExtResource("6_1xmt0")]
-position = Vector2(-66, -3)
+position = Vector2(218, 22)
 
 [node name="Bouncer2" parent="Parts" instance=ExtResource("6_1xmt0")]
-position = Vector2(-39, 30)
+position = Vector2(245, 55)
 
 [node name="Entities" type="Node2D" parent="."]
 
+[node name="Dull" parent="Entities" instance=ExtResource("7_hukdr")]
+position = Vector2(29, 0)
+
 [node name="Laserer" parent="Entities" instance=ExtResource("7_nldp1")]
-position = Vector2(9, -46)
+position = Vector2(300, 31)
