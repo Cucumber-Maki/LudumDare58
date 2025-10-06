@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cadvtjicbrawf"]
+
+[ext_resource type="PackedScene" uid="uid://br8bgefwontqj" path="res://assets/entities/enemies/enemyBase.tscn" id="1_qry71"]
+[ext_resource type="Texture2D" uid="uid://gc2rjelgqgt1" path="res://assets/entities/enemies/laserer/laserer.png" id="2_rabsj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f4dw2"]
+radius = 7.0
+
+[node name="Laserer" instance=ExtResource("1_qry71")]
+projectile_scene = "uid://by4ax5li8vcj1"
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_f4dw2")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(1, 0)
+rotation = 1.5707964
+texture = ExtResource("2_rabsj")

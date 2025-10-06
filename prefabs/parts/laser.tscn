@@ -8,7 +8,7 @@
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cb84c"]
-radius = 11.0
+radius = 14.0
 
 [node name="Laser" instance=ExtResource("1_6p5wf")]
 shape = SubResource("CircleShape2D_k6cyq")

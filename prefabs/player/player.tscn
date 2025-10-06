@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://hg3ly5ws3j8i" path="res://assets/entities/player/claw/claw.tscn" id="4_e3x78"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_87uf6"]
-radius = 20.0
+radius = 27.018513
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7h61r"]
 radius = 8.0

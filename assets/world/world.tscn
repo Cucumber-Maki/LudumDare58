@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cnlxuhp2737bm" path="res://prefabs/parts/missile.tscn" id="4_v8xi1"]
 [ext_resource type="PackedScene" uid="uid://bmyrrvuiooexg" path="res://prefabs/parts/laser.tscn" id="5_pk4gp"]
 [ext_resource type="PackedScene" uid="uid://u26qcqun5j7c" path="res://prefabs/parts/bouncer.tscn" id="6_1xmt0"]
-[ext_resource type="PackedScene" uid="uid://cadvtjicbrawf" path="res://prefabs/enemies/Laserer.tscn" id="7_nldp1"]
+[ext_resource type="PackedScene" uid="uid://cadvtjicbrawf" path="res://prefabs/enemies/laserer.tscn" id="7_nldp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i0tg"]
 size = Vector2(288, 160)
