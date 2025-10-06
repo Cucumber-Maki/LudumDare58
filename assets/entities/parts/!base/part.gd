@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	if (health_regenTimer > 0.0):
 		health_regenTimer -= delta;
 	elif (health_remaining < health_max && (get_parent() as Player == null)):
-		health_remaining = move_toward(health_remaining, health_max, delta * 0.2);
+		health_remaining = move_toward(health_remaining, health_max, delta);
 	
 	var parent := get_parent() as RigidBody2D;
 	if (parent == null):
@@ -91,7 +91,7 @@ func detach() -> void:
 	scene.move_child(m_rigidBody, 0);
 	
 	m_rigidBody.global_position = global_position;
-	reparent(m_rigidBody);
+	call_deferred("reparent", m_rigidBody);
 		
 	for sibling in siblings:
 		sibling.join(m_rigidBody, false);
@@ -101,9 +101,10 @@ func detach() -> void:
 
 func takeDamage(damage : float) -> void:
 	health_remaining -= damage;
-	health_regenTimer = 3.0;
+	health_regenTimer = 0.0;
 	if (health_remaining > 0.0): return;
 	detach();
+	Player.instance.cameraShake(10.0);
 
 func drawConnection(target : Vector2, onTop : bool = false) -> void:
 	var difference := target - global_position;

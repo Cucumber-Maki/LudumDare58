@@ -13,11 +13,11 @@ config_version=5
 config/name="LudumDare58"
 run/main_scene="uid://cw4et7t6jwife"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-boot_splash/bg_color=Color(0.623529, 0.698039, 0.780392, 1)
+boot_splash/bg_color=Color(0.06666667, 0.06666667, 0.2, 1)
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-boot_splash/image="uid://i2ly038e1ic3"
-config/icon="uid://i2ly038e1ic3"
+boot_splash/image="uid://bvfu2inxvn3yh"
+config/icon="uid://w82iomyxnq4k"
 
 [autoload]
 

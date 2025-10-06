@@ -13,12 +13,17 @@ script = ExtResource("1_wm7xg")
 [node name="Layer1" type="Sprite2D" parent="."]
 texture_repeat = 2
 material = ExtResource("2_gfa1i")
+instance_shader_parameters/ParallaxFactor = 0.02
 texture = ExtResource("1_xrx4o")
 
 [node name="Layer2" type="Sprite2D" parent="."]
+texture_repeat = 2
 material = ExtResource("2_gfa1i")
+instance_shader_parameters/ParallaxFactor = 0.01
 texture = ExtResource("4_8emix")
 
 [node name="Layer3" type="Sprite2D" parent="."]
+texture_repeat = 2
 material = ExtResource("2_gfa1i")
+instance_shader_parameters/ParallaxFactor = 0.005
 texture = ExtResource("5_4sprh")

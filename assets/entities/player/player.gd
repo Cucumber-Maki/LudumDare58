@@ -29,6 +29,7 @@ var rotation_roomOffset := 0.0;
 @export_group("Camera", "camera_")
 @export var camera_cameraNode : Camera2D = null;
 @export var camera_defaultZoom : float = 2.0;
+var camera_shake := 0.0;
 
 @export_group("Bounds", "bounds_")
 @export var bounds_timeout : float = 5.0;
@@ -37,11 +38,19 @@ var rotation_roomOffset := 0.0;
 var bounds_lastSafePosition = Vector2.ZERO;
 
 var claw_enabled := false;
+var first_room := true;
 
 func _ready() -> void:
-	onHitShape.connect(func(damage, shape): Console.printWarning(damage, " ", shape));
+	onWin.connect(func(): GameState.changeScene("res://scenes/end/win.tscn"))
+	onDeath.connect(func(): GameState.changeScene("res://scenes/end/lose.tscn"))
+	
 	onHitShape.connect(takeDamage);
-	onRoomChanged.connect(func(): rotation_bump = true);
+	onRoomChanged.connect(func(): 
+		if (first_room): 
+			first_room = false;
+		else: 
+			rotation_bump = true
+		);
 	instance = self;
 	
 	onPartJoin.connect(func(part : Part):
@@ -84,10 +93,13 @@ func _physics_process(delta: float) -> void:
 	handleRotation(delta);
 	handleMovement(delta);
 	
+	var cameraPos := global_position + handleCameraShake(delta);
 	if (room_current != null):
-		room_current.clampCamera(global_position, camera_cameraNode, camera_defaultZoom);
-		
-	if (rotation_bump):
+		room_current.clampCamera(cameraPos, camera_cameraNode, camera_defaultZoom);
+	else:
+		camera_cameraNode.global_position = cameraPos;
+	
+	if (rotation_bump && GameSettings.game_roomEntryRotation):
 		rotation_bump = false;
 		bumpRotation();
 
@@ -137,6 +149,8 @@ var health_alive := true;
 func takeDamage(damage : float, shape : CollisionShape2D):
 	if (!health_alive): return;
 	
+	cameraShake(3.0 * damage);
+	
 	var part := shape as Part;
 	if (part == null):
 		# Damage random part.
@@ -145,9 +159,20 @@ func takeDamage(damage : float, shape : CollisionShape2D):
 			.filter(func(child : Node): return child != null);
 		if (parts.size() <= 0):
 			# If that doesn't exist, death is amongus.
-			onDeath.emit();
 			health_alive = false;
+			onDeath.emit();
 			return;
 		part = parts.pick_random()	
 	
 	part.takeDamage(damage);
+
+func cameraShake(amount : float) -> void:
+	camera_shake = max(camera_shake, amount);
+
+func handleCameraShake(_delta) -> Vector2:
+	var shake := Vector2(
+		randf_range(-camera_shake, camera_shake),
+		randf_range(-camera_shake, camera_shake)
+	);
+	camera_shake *= 0.9;
+	return shake;

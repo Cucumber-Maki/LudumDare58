@@ -38,6 +38,7 @@ func _ready() -> void:
 		explosion.global_position = global_position;
 		get_tree().current_scene.add_child(explosion);
 		)
+	$HealthBar._physics_process(0);
 	process_mode = Node.PROCESS_MODE_DISABLED;
 
 func _physics_process(delta: float) -> void:

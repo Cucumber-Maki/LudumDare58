@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqcefn2t7iqum"]
+
+[ext_resource type="PackedScene" uid="uid://dwtf5pe17wd0e" path="res://scenes/end/win.tscn" id="1_iwpx1"]
+
+[node name="Lose" instance=ExtResource("1_iwpx1")]
+
+[node name="Label" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer" index="0"]
+text = "[ You have been defeated ]
+
+Feel free to try again !!"

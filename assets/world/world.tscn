@@ -431,32 +431,25 @@ scale = Vector2(1, 7)
 [node name="Parts" type="Node2D" parent="."]
 
 [node name="Laser" parent="Parts" instance=ExtResource("5_pk4gp")]
-health_max = 5.0
 rotation_random = false
 
 [node name="Crown" parent="Parts" instance=ExtResource("9_moqa0")]
-position = Vector2(768, -3688)
-health_max = 5.0
+position = Vector2(768, -3689)
 
 [node name="Laser2" parent="Parts" instance=ExtResource("5_pk4gp")]
 position = Vector2(256, 48)
-health_max = 5.0
 
 [node name="Laser3" parent="Parts" instance=ExtResource("5_pk4gp")]
 position = Vector2(448, 48)
-health_max = 5.0
 
 [node name="Laser4" parent="Parts" instance=ExtResource("5_pk4gp")]
 position = Vector2(912, -640)
-health_max = 5.0
 
 [node name="Missile" parent="Parts" instance=ExtResource("4_v8xi1")]
 position = Vector2(1568, -704)
-health_max = 5.0
 
 [node name="Missile2" parent="Parts" instance=ExtResource("4_v8xi1")]
 position = Vector2(1760, -496)
-health_max = 5.0
 
 [node name="Laser5" parent="Parts" instance=ExtResource("5_pk4gp")]
 position = Vector2(144, -2480)
@@ -534,7 +527,7 @@ position = Vector2(544, -1520)
 position = Vector2(544, -1552)
 
 [node name="Missile8" parent="Parts" instance=ExtResource("4_v8xi1")]
-position = Vector2(1280, -1248)
+position = Vector2(1280, -1250)
 
 [node name="Entities" type="Node2D" parent="."]
 

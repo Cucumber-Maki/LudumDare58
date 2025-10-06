@@ -53,9 +53,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 832.0
-offset_top = -3720.0
+offset_top = -3704.0
 offset_right = 1056.0
-offset_bottom = -3667.0
+offset_bottom = -3651.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_bdhmt")
@@ -168,15 +168,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 312.0
-offset_top = -568.0
+offset_top = -576.0
 offset_right = 862.0
-offset_bottom = -487.0
+offset_bottom = -467.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.44761387, 0.44761387)
 theme = ExtResource("1_bdhmt")
 text = "Your parts are your life.
 Parts will get detached if they take enough damage.
+Parts will regenerate health when detached.
 You will die if you take damage without any attached parts."
 horizontal_alignment = 1
 vertical_alignment = 1

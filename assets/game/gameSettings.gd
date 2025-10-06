@@ -8,11 +8,8 @@ extends GameSaveableBase;
 ################################################################################
 
 var game_keepClawForward : bool = true;
-var game_toggleHoldClaw : bool = false;
-
-var volume_master : float = 0.1;
-var volume_effect : float = 0.5;
-var volume_music : float = 0.5;
+var game_toggleHoldClaw : bool = true;
+var game_roomEntryRotation : bool = true;
 
 ################################################################################	
 

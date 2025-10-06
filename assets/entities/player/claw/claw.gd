@@ -22,7 +22,13 @@ func _physics_process(delta: float) -> void:
 func handleClaw(delta : float) -> void:
 	if (m_player != null && !m_player.claw_enabled):
 		$ClawHead.texture = image_idle;
-		m_grippedPart = null;
+		if (m_grippedPart != null):
+			var connectableShape := m_grippedPart.getBestConnectableShape();
+			m_grippedPart.drawConnectionClear();
+			if (m_player != null && connectableShape != null):
+				m_grippedPart.join(m_player, true, connectableShape.global_position);
+				m_grippedPart.m_connectedParent = connectableShape.get_parent().get_parent() as Part;
+			m_grippedPart = null;
 		m_targetPosition = to_global(m_targetLocalPosition) - global_position;
 		return;
 		
@@ -46,13 +52,14 @@ func handleClaw(delta : float) -> void:
 			m_grippedPart.drawConnection(connectableShape.global_position, true);
 		else:
 			m_grippedPart.drawConnectionClear();
-		
+			
 		if (!Input.is_action_pressed("player_claw_grip") || grippablePart == null):
 			m_grippedPart.drawConnectionClear();
 			if (m_player != null && connectableShape != null):
 				m_grippedPart.join(m_player, true, connectableShape.global_position);
 				m_grippedPart.m_connectedParent = connectableShape.get_parent().get_parent() as Part;
 			m_grippedPart = null;
+			
 		else:
 			var current := m_grippedPart.m_rigidBody.global_position;
 			var difference := target - current;
