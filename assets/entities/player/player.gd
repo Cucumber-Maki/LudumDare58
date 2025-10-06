@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Entity
 class_name Player;
 
 signal roomChanged(room : Room);
@@ -27,6 +27,12 @@ var rotation_roomOffset := 0.0;
 @export var camera_cameraNode : Camera2D = null;
 @export var camera_defaultZoom : float = 2.0;
 
+@export_group("Bounds", "bounds_")
+@export var bounds_timeout : float = 5.0;
+@export var bounds_timeoutLabel : Label = null;
+@onready var bounds_timer = bounds_timeout;
+var bounds_lastSafePosition = Vector2.ZERO;
+
 var room_current : Room = null;
 var claw_enabled := false;
 
@@ -52,12 +58,27 @@ func _physics_process(delta: float) -> void:
 	elif (Input.is_action_just_pressed("player_claw_toggle")):
 		claw_enabled = !claw_enabled;
 		
+	if (room_current != null):
+		if (!room_current.containsPoint(global_position)):
+			bounds_timer -= delta;
+			if (bounds_timeoutLabel != null):
+				bounds_timeoutLabel.get_parent().get_parent().visible = (bounds_timer < bounds_timeout - 1.0);
+				bounds_timeoutLabel.text = "Out of bounds. Teleporting in %s seconds." % String.num(round(bounds_timer), 0);
+			if (bounds_timer < 0.0):
+				global_position = bounds_lastSafePosition;
+				linear_velocity = Vector2.ZERO;
+				angular_velocity = 0;
+		else:
+			bounds_timer = bounds_timeout;
+			if (bounds_timeoutLabel != null):
+				bounds_timeoutLabel.get_parent().get_parent().visible = false;
+	
 	handleRotation(delta);
 	handleMovement(delta);
 	
 	if (room_current != null):
 		room_current.clampCamera(global_position, camera_cameraNode, camera_defaultZoom);
-	
+		
 	if (rotation_bump):
 		rotation_bump = false;
 		bumpRotation();

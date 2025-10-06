@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnlxuhp2737bm"]
+
+[ext_resource type="PackedScene" uid="uid://bmyrrvuiooexg" path="res://prefabs/parts/laser.tscn" id="1_i8aau"]
+[ext_resource type="Texture2D" uid="uid://c4sidp4er3w6q" path="res://assets/entities/parts/missile/missile.png" id="2_6mgjh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_knf4v"]
+radius = 5.0
+
+[node name="Missile" instance=ExtResource("1_i8aau")]
+shape = SubResource("CircleShape2D_knf4v")
+projectile_scene = "uid://lvy81sutyx1o"
+projectile_interval = 1.0
+
+[node name="Sprite" parent="." index="3"]
+texture = ExtResource("2_6mgjh")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkito7lxb1op4"]
 
 [ext_resource type="Script" uid="uid://csmjet12ubsgq" path="res://assets/entities/player/player.gd" id="1_j8wwh"]
-[ext_resource type="PackedScene" uid="uid://bab6j5n3amm12" path="res://assets/entities/parts/part_join.tscn" id="2_ecp7k"]
+[ext_resource type="PackedScene" uid="uid://bab6j5n3amm12" path="res://assets/entities/parts/!base/part_join.tscn" id="2_ecp7k"]
 [ext_resource type="Texture2D" uid="uid://yig0n38jgdme" path="res://assets/entities/player/body.png" id="3_3kclj"]
 [ext_resource type="PackedScene" uid="uid://hg3ly5ws3j8i" path="res://assets/entities/player/claw/claw.tscn" id="4_e3x78"]
 
@@ -12,7 +12,8 @@ radius = 20.0
 radius = 8.0
 
 [node name="Player" type="RigidBody2D"]
-collision_layer = 3
+collision_layer = 2
+collision_mask = 33
 center_of_mass_mode = 1
 inertia = 1.0
 continuous_cd = 2

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://drisol85qtds1"]
+
+[ext_resource type="PackedScene" uid="uid://by4ax5li8vcj1" path="res://prefabs/projectiles/laser.tscn" id="1_pcnp6"]
+[ext_resource type="Texture2D" uid="uid://du7chbr1g2n71" path="res://assets/entities/projectiles/bouncer/bouncer.png" id="2_gthoq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gthoq"]
+radius = 2.0
+
+[node name="Bouncer" instance=ExtResource("1_pcnp6")]
+projectile_speed = 64.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_gthoq")
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_gthoq")

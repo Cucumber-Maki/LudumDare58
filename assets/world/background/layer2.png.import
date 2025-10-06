@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu47odnxftkwe"
-path="res://.godot/imported/part_connection.png-8344f9a806d4a5ed437517b78bfbd82e.ctex"
+uid="uid://dokinsblt6xns"
+path="res://.godot/imported/layer2.png-d524c7e851933584f248bbb15126cb7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/parts/part_connection.png"
-dest_files=["res://.godot/imported/part_connection.png-8344f9a806d4a5ed437517b78bfbd82e.ctex"]
+source_file="res://assets/world/background/layer2.png"
+dest_files=["res://.godot/imported/layer2.png-d524c7e851933584f248bbb15126cb7f.ctex"]
 
 [params]
 

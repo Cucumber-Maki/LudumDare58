@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://lvy81sutyx1o"]
+
+[ext_resource type="PackedScene" uid="uid://by4ax5li8vcj1" path="res://prefabs/projectiles/laser.tscn" id="1_jyr4d"]
+[ext_resource type="Texture2D" uid="uid://b74mm0yqqbiu0" path="res://assets/entities/projectiles/missile/missile.png" id="2_4p56w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aua2m"]
+size = Vector2(8, 3)
+
+[node name="Missile" instance=ExtResource("1_jyr4d")]
+projectile_turnAcceleration = 4.0
+projectile_turnMax = 6.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_aua2m")
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_4p56w")

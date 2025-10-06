@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3ig42f0i1rka"]
 
-[ext_resource type="Script" uid="uid://dx7r1tvpj85rf" path="res://assets/entities/parts/part.gd" id="1_kbnnl"]
-[ext_resource type="Texture2D" uid="uid://cu47odnxftkwe" path="res://assets/entities/parts/part_connection.png" id="2_u55kc"]
-[ext_resource type="PackedScene" uid="uid://bab6j5n3amm12" path="res://assets/entities/parts/part_join.tscn" id="3_q6eb6"]
+[ext_resource type="Script" uid="uid://dx7r1tvpj85rf" path="res://assets/entities/parts/!base/part.gd" id="1_kbnnl"]
+[ext_resource type="Texture2D" uid="uid://cu47odnxftkwe" path="res://assets/entities/parts/!base/part_connection.png" id="2_u55kc"]
+[ext_resource type="PackedScene" uid="uid://bab6j5n3amm12" path="res://assets/entities/parts/!base/part_join.tscn" id="3_q6eb6"]
 
 [node name="PartBase" type="CollisionShape2D"]
 script = ExtResource("1_kbnnl")

@@ -61,6 +61,8 @@ func detach() -> void:
 		siblings.append(part);
 		
 	m_rigidBody = RigidBody2D.new();
+	m_rigidBody.collision_layer = 32;
+	m_rigidBody.collision_mask = 1 | 2 | 8 | 32;
 	m_rigidBody.linear_damp = 0.7;
 	scene.add_child(m_rigidBody);
 	scene.move_child(m_rigidBody, 0);

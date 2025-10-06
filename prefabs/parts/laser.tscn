@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmyrrvuiooexg"]
+
+[ext_resource type="PackedScene" uid="uid://d3ig42f0i1rka" path="res://assets/entities/parts/!base/part_base.tscn" id="1_6p5wf"]
+[ext_resource type="Script" uid="uid://baduqnjr6jwag" path="res://assets/entities/parts/projectileSpawner.gd" id="2_s5pjl"]
+[ext_resource type="Texture2D" uid="uid://b7splvbvu2o0r" path="res://assets/entities/parts/laser/laser.png" id="2_vata6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k6cyq"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cb84c"]
+radius = 11.0
+
+[node name="Laser" instance=ExtResource("1_6p5wf")]
+shape = SubResource("CircleShape2D_k6cyq")
+script = ExtResource("2_s5pjl")
+projectile_scene = "uid://by4ax5li8vcj1"
+projectile_interval = 0.5
+projectile_offset = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartJoin" index="0"]
+shape = SubResource("CircleShape2D_cb84c")
+debug_color = Color(0, 0.64685506, 0.20906562, 0.1)
+
+[node name="Sprite" type="Sprite2D" parent="." index="3"]
+rotation = 1.5707964
+texture = ExtResource("2_vata6")
